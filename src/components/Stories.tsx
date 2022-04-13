@@ -16,7 +16,7 @@ import {
   TimelineOppositeContent,
 } from '@mui/lab'
 
-export default function Stories() {
+let Stories: React.FC = () => {
   const [topStories, setTopStories] = useState([])
   const [visible, setVisible] = useState(5)
 
@@ -37,14 +37,14 @@ export default function Stories() {
   }, [])
 
   //processing unix time to readable format
-  const unixDate = (date) => {
+  const unixDate = (date: number) => {
     return new Date(date * 1000).toLocaleString()
   }
 
   //stories counter - 5 days
   const countLastFiveDaysStories = () => {
     let lastDaysStories = 0
-    topStories.forEach((story) => {
+    topStories.forEach((story: any) => {
       if (
         new Date().getTime() - new Date(story.time * 1000).getTime() <
         432000000
@@ -58,7 +58,7 @@ export default function Stories() {
   //stories counter - 24 hours
   const countLastDayStories = () => {
     let lastDaysStories = 0
-    topStories.forEach((story) => {
+    topStories.forEach((story: any) => {
       if (
         new Date().getTime() - new Date(story.time * 1000).getTime() <
         86400000
@@ -69,8 +69,10 @@ export default function Stories() {
     return lastDaysStories
   }
 
-  return topStories.length == 0 ? (
-    <Box>Loading...</Box>
+  return topStories.length === 0 ? (
+    <Box>
+      Loading...
+    </Box>
   ) : (
     <ThemeProvider theme={theme}>
       <Box
@@ -108,7 +110,7 @@ export default function Stories() {
             <b>{countLastDayStories()}</b> stories last 24 hours
           </Typography>
         </Box>
-        {topStories.slice(0, visible).map((i) => {
+        {topStories.slice(0, visible).map((i: any) => {
           return (
             <Box key={i.id} sx={{ maxWidth: '600px' }}>
               <Timeline sx={{ margin: 0 }}>
@@ -159,3 +161,5 @@ export default function Stories() {
     </ThemeProvider>
   )
 }
+
+export default Stories;

@@ -3,7 +3,7 @@ import Stories from './components/Stories';
 import { Container } from '@mui/material';
 
 
-const App = () => {
+const App: React.FC = () => {
 
   return (  
     <Container>
